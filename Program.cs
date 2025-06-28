@@ -41,7 +41,6 @@ builder.Services.AddControllers(
 
 
 
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
 builder.Services.AddEndpointsApiExplorer();
@@ -53,7 +52,7 @@ builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 //dependency injection --> whenever we use the ILog in the ctor, use the {second argument below} for it. ()
 builder.Services.AddTransient<ILog, LogToDb>();
 builder.Services.AddTransient<IStudentRepository, StudentRepository>();
-
+builder.Services.AddTransient(typeof(ISchoolRepository<>), typeof(SchoolRepository<>));
 
 
 

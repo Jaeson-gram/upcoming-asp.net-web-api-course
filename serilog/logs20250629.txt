@@ -1,0 +1,73 @@
+2025-06-29 00:01:46.147 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-29 00:01:46.155 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-29 00:01:46.446 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-29 00:01:46.450 +01:00 [INF] Hosting environment: Development
+2025-06-29 00:01:46.450 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-29 00:01:47.261 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 1113.5582ms
+2025-06-29 00:01:50.990 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-29 00:01:53.240 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2250.3034ms
+2025-06-29 00:02:03.890 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-29 00:02:04.002 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-29 00:02:04.016 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-29 00:02:04.285 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-29 00:02:19.257 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-29 00:02:19.288 +01:00 [INF] GetAllStudents() called!
+2025-06-29 00:02:27.777 +01:00 [INF] Executed DbCommand (1,473ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+2025-06-29 00:02:28.250 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 8955.3985ms.
+2025-06-29 00:02:28.308 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-29 00:02:28.901 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 24570.7977ms
+2025-06-29 00:02:28.904 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-29 00:02:28.971 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 769 application/json; charset=utf-8 25080.4978ms
+2025-06-29 00:03:06.826 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5276/api/Student/update?studentId=3020 - application/json-patch+json 123
+2025-06-29 00:03:06.829 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2)'
+2025-06-29 00:03:06.883 +01:00 [INF] Route matched with {action = "UpdateStudent", controller = "Student"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO]] UpdateStudentAsync(WebAPI2.Models.StudentDTO, Int32) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-29 00:03:07.518 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2) - Validation state: "Valid"
+2025-06-29 00:03:10.483 +01:00 [INF] Executed DbCommand (1,971ms) [Parameters=[@__studentId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+WHERE [s].[Id] = @__studentId_0
+2025-06-29 00:03:11.527 +01:00 [INF] Executed DbCommand (585ms) [Parameters=[@p4='?' (DbType = Int32), @p0='?' (Size = 300), @p1='?' (DbType = DateTime2), @p2='?' (Size = 60), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Students] SET [Address] = @p0, [DateOfBirth] = @p1, [Email] = @p2, [Name] = @p3
+OUTPUT 1
+WHERE [Id] = @p4;
+2025-06-29 00:03:11.568 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 4050.618ms.
+2025-06-29 00:03:11.570 +01:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI2.Data.Student'.
+2025-06-29 00:03:11.577 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2) in 4693.5731ms
+2025-06-29 00:03:11.577 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2)'
+2025-06-29 00:03:11.578 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5276/api/Student/update?studentId=3020 - 200 110 application/json; charset=utf-8 4752.2669ms
+2025-06-29 00:03:27.837 +01:00 [INF] Request starting HTTP/1.1 PUT http://localhost:5276/api/Student/update?studentId=3019 - application/json-patch+json 109
+2025-06-29 00:03:27.840 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2)'
+2025-06-29 00:03:27.841 +01:00 [INF] Route matched with {action = "UpdateStudent", controller = "Student"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO]] UpdateStudentAsync(WebAPI2.Models.StudentDTO, Int32) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-29 00:03:28.073 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2) - Validation state: "Valid"
+2025-06-29 00:03:28.271 +01:00 [INF] Executed DbCommand (180ms) [Parameters=[@__studentId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+WHERE [s].[Id] = @__studentId_0
+2025-06-29 00:03:30.288 +01:00 [INF] Executed DbCommand (1,450ms) [Parameters=[@p0='?' (Size = 300), @p1='?' (DbType = DateTime2), @p2='?' (Size = 60), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Students] ([Address], [DateOfBirth], [Email], [Name])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-06-29 00:03:30.412 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 2337.8852ms.
+2025-06-29 00:03:30.413 +01:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI2.Data.Student'.
+2025-06-29 00:03:30.418 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2) in 2576.8616ms
+2025-06-29 00:03:30.420 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.UpdateStudentAsync (WebAPI2)'
+2025-06-29 00:03:30.422 +01:00 [INF] Request finished HTTP/1.1 PUT http://localhost:5276/api/Student/update?studentId=3019 - 200 110 application/json; charset=utf-8 2586.24ms
+2025-06-29 00:03:38.772 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-29 00:03:38.805 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-29 00:03:38.805 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-29 00:03:38.810 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-29 00:03:38.811 +01:00 [INF] GetAllStudents() called!
+2025-06-29 00:03:38.821 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+2025-06-29 00:03:38.823 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 12.7244ms.
+2025-06-29 00:03:38.823 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-29 00:03:38.825 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 19.6462ms
+2025-06-29 00:03:38.825 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-29 00:03:38.825 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 861 application/json; charset=utf-8 53.89ms

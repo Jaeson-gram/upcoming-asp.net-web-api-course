@@ -22,9 +22,11 @@ namespace WebAPI2.Controllers
         private readonly ILogger<StudentController> _logger;
         // private readonly SchoolDbContext _dbContext;
         private readonly IMapper _mapper;
-        private readonly IStudentRepository _studentRepo;
+        // private readonly IStudentRepository _studentRepo;
+        private readonly ISchoolRepository<Student> _studentRepo;
 
-        public StudentController(ILogger<StudentController> logger, IMapper mapper, IStudentRepository studentRepo)
+
+        public StudentController(ILogger<StudentController> logger, IMapper mapper, ISchoolRepository<Student> studentRepo)
         {
             _logger = logger;
             // _dbContext = dbContext;
@@ -42,19 +44,6 @@ namespace WebAPI2.Controllers
 
             //in ef core we can easily fetch the whole table like so...
             var students = await _studentRepo.GetAllAsync();
-
-            // use automapper instead
-            // and only use dtos when we want to return a modified version of our students...
-            // perhaps one where date of birth is not necessary or something is edited, evaluated or added
-            
-            // var students = _dbContext.Students.Select(s => new StudentDTO();
-            // {
-            //     Id = s.Id,
-            //     Name = s.Name,
-            //     Email = s.Email,
-            //     Address = s.Address,
-            //     DateOfBirth = s.DateOfBirth
-            // }); //or add a .ToList();
             
             var studentDtoData = _mapper.Map<IEnumerable<StudentDTO>>(students);
             
@@ -77,7 +66,7 @@ namespace WebAPI2.Controllers
                 return BadRequest(); //400 Bad Request
             }
             
-            var student = await _studentRepo.GetByIdAsync(id, false);
+            var student = await _studentRepo.GetByIdAsync(student => student.Id == id, false);
 
             if (student == null)
             {
@@ -106,7 +95,7 @@ namespace WebAPI2.Controllers
                 return BadRequest("name cannot be empty"); //400 Bad Request
             }
 
-            var student = await _studentRepo.GetByNameAsync(name);
+            var student = await _studentRepo.GetByNameAsync(student => student.Name.ToLower().Contains(name.ToLower()));
 
             if (student == null)
             {
@@ -132,14 +121,14 @@ namespace WebAPI2.Controllers
                 return BadRequest("wrong id"); //400 Bad Request
             }
             
-            var student = await _studentRepo.GetByIdAsync(id, false);
+            var student = await _studentRepo.GetByIdAsync(stu => stu.Id == id, false);
 
             if (student == null)
             {
                 return NotFound($"no student with the id {id} was found"); //404 Not Found
             }
             
-            _studentRepo.Delete(student.Id);
+            _studentRepo.Delete(student);
             
             return Ok(true);
         }
@@ -173,7 +162,7 @@ namespace WebAPI2.Controllers
                 return BadRequest();
             }
 
-            var studentToPatch = await _studentRepo.GetByIdAsync(studentId, false);
+            var studentToPatch = await _studentRepo.GetByIdAsync(stu => stu.Id == studentId, true);
             
             // var studentToPatch2 = _dbContext.Students.AsNoTracking().FirstOrDefault(s => s.Id == studentId);
             
@@ -207,7 +196,7 @@ namespace WebAPI2.Controllers
             }
             
             //fetch the student to patch
-            var studentToPatch = await _studentRepo.GetByIdAsync(id, true);
+            var studentToPatch = await _studentRepo.GetByIdAsync(stu => stu.Id == id, true);
         
             if (studentToPatch == null)
             {
