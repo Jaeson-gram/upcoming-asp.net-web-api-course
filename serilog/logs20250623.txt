@@ -1,0 +1,500 @@
+2025-06-23 12:27:36.773 +01:00 [INF] Executed DbCommand (351ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-06-23 12:27:39.036 +01:00 [INF] Executed DbCommand (2,086ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-06-23 12:27:39.196 +01:00 [INF] Executed DbCommand (156ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-06-23 12:27:39.365 +01:00 [INF] Executed DbCommand (169ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-06-23 12:27:41.500 +01:00 [INF] Executed DbCommand (2,081ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-06-23 12:27:41.556 +01:00 [INF] Applying migration '20250623112412_AddRecordsToStudentsTable'.
+2025-06-23 12:27:43.903 +01:00 [INF] Executed DbCommand (1,839ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Address', N'DateOfBirth', N'Email', N'Name') AND [object_id] = OBJECT_ID(N'[Students]'))
+    SET IDENTITY_INSERT [Students] ON;
+INSERT INTO [Students] ([Id], [Address], [DateOfBirth], [Email], [Name])
+VALUES (1, N'port 11, esville, ah, riv, ng, af', '2000-04-13', N'yej@jey.com', N'yej'),
+(2, N'port 11, esville, ah, riv, ng, af', '2006-04-07', N'uk@okey.com', N'uk'),
+(3, N'port 13, esville, ah, riv, ng, af', '2001-03-28', N'josh@yeshua.com', N'josh');
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Address', N'DateOfBirth', N'Email', N'Name') AND [object_id] = OBJECT_ID(N'[Students]'))
+    SET IDENTITY_INSERT [Students] OFF;
+2025-06-23 12:27:43.915 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250623112412_AddRecordsToStudentsTable', N'8.0.17');
+2025-06-23 12:42:16.385 +01:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-06-23 12:42:16.540 +01:00 [INF] Executed DbCommand (54ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-06-23 12:42:16.573 +01:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-06-23 12:42:16.609 +01:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-06-23 12:42:16.728 +01:00 [INF] Executed DbCommand (89ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-06-23 12:42:16.777 +01:00 [INF] Applying migration '20250623114056_ModifyStudentSchema'.
+2025-06-23 12:42:17.799 +01:00 [INF] Executed DbCommand (837ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Students]') AND [c].[name] = N'Name');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Students] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Students] ALTER COLUMN [Name] nvarchar(40) NOT NULL;
+2025-06-23 12:42:19.075 +01:00 [INF] Executed DbCommand (1,275ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Students]') AND [c].[name] = N'Email');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [Students] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [Students] ALTER COLUMN [Email] nvarchar(40) NOT NULL;
+2025-06-23 12:42:19.620 +01:00 [INF] Executed DbCommand (545ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @var2 sysname;
+SELECT @var2 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Students]') AND [c].[name] = N'Address');
+IF @var2 IS NOT NULL EXEC(N'ALTER TABLE [Students] DROP CONSTRAINT [' + @var2 + '];');
+ALTER TABLE [Students] ALTER COLUMN [Address] nvarchar(300) NULL;
+2025-06-23 12:42:19.852 +01:00 [INF] Executed DbCommand (232ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20250623114056_ModifyStudentSchema', N'8.0.17');
+2025-06-23 13:48:29.719 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-23 13:48:29.999 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 13:48:30.019 +01:00 [INF] Hosting environment: Development
+2025-06-23 13:48:30.019 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-23 13:48:35.888 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-23 13:48:37.997 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 2121.2136ms
+2025-06-23 13:48:42.308 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-23 13:48:44.006 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1698.1634ms
+2025-06-23 13:48:58.766 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-23 13:48:58.898 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 13:48:58.929 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 13:48:59.078 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 13:48:59.891 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-23 13:49:00.118 +01:00 [INF] Got all students
+2025-06-23 13:49:03.470 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 3548.4722ms.
+2025-06-23 13:49:03.550 +01:00 [INF] Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-23 13:49:12.892 +01:00 [ERR] Failed executing DbCommand (4,671ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Name], [s].[Email], [s].[Address], [s].[DateOfBirth]
+FROM [Student] AS [s]
+2025-06-23 13:49:13.516 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'WebAPI2.Data.SchoolDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Student'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:e29a0b30-fc2b-4398-b0de-30db04938d20
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Student'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:e29a0b30-fc2b-4398-b0de-30db04938d20
+Error Number:208,State:1,Class:16
+2025-06-23 13:49:13.638 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 14484.9249ms
+2025-06-23 13:49:13.647 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 13:49:13.739 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Student'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.AspNetCore.Mvc.NewtonsoftJson.AsyncEnumerableReader.ReadInternal[T](Object value, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Mvc.NewtonsoftJson.AsyncEnumerableReader.ReadInternal[T](Object value, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter.WriteResponseBodyAsync(OutputFormatterWriteContext context, Encoding selectedEncoding)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultAsync>g__Logged|22_0(ResourceInvoker invoker, IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|30_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultFilters>g__Awaited|28_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ClientConnectionId:e29a0b30-fc2b-4398-b0de-30db04938d20
+Error Number:208,State:1,Class:16
+2025-06-23 13:49:13.899 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 500 null text/plain; charset=utf-8 15133.0546ms
+2025-06-23 13:52:12.713 +01:00 [INF] Application is shutting down...
+2025-06-23 13:53:24.933 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-23 13:53:25.186 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 13:53:25.189 +01:00 [INF] Hosting environment: Development
+2025-06-23 13:53:25.190 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-23 13:53:28.326 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-23 13:53:29.042 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 727.6845ms
+2025-06-23 13:53:32.575 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-23 13:53:33.930 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1354.84ms
+2025-06-23 13:53:41.441 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-23 13:53:41.639 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 13:53:41.699 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 13:53:42.653 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 13:53:46.597 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-23 13:53:46.620 +01:00 [INF] Got all students
+2025-06-23 13:53:51.870 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 5234.6891ms.
+2025-06-23 13:53:51.947 +01:00 [INF] Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-23 13:53:57.342 +01:00 [INF] Executed DbCommand (480ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Name], [s].[Email], [s].[Address], [s].[DateOfBirth]
+FROM [Students] AS [s]
+2025-06-23 13:53:58.356 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 15639.4374ms
+2025-06-23 13:53:58.373 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 13:53:58.497 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 356 application/json; charset=utf-8 17055.4904ms
+2025-06-23 13:56:31.121 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/2 - null null
+2025-06-23 13:56:31.136 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetStudentById (WebAPI2)'
+2025-06-23 13:56:31.216 +01:00 [INF] Route matched with {action = "GetStudentById", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO] GetStudentById(Int32) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 13:56:31.262 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetStudentById (WebAPI2) - Validation state: "Valid"
+2025-06-23 13:56:31.953 +01:00 [INF] Executed DbCommand (114ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-06-23 13:56:32.186 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetStudentById (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 923.3681ms.
+2025-06-23 13:56:32.188 +01:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI2.Models.StudentDTO'.
+2025-06-23 13:56:32.190 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetStudentById (WebAPI2) in 974.0994ms
+2025-06-23 13:56:32.191 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetStudentById (WebAPI2)'
+2025-06-23 13:56:32.194 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/2 - 200 115 application/json; charset=utf-8 1072.1896ms
+2025-06-23 13:56:45.432 +01:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5276/api/Student/3 - null null
+2025-06-23 13:56:45.433 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2)'
+2025-06-23 13:56:45.451 +01:00 [INF] Route matched with {action = "DeleteStudentById", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Boolean] DeleteStudentById(Int32) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 13:56:45.464 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2) - Validation state: "Valid"
+2025-06-23 13:56:45.904 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-06-23 13:56:46.039 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 573.8659ms.
+2025-06-23 13:56:46.040 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Boolean'.
+2025-06-23 13:56:46.048 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2) in 596.8772ms
+2025-06-23 13:56:46.049 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2)'
+2025-06-23 13:56:46.050 +01:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5276/api/Student/3 - 200 4 application/json; charset=utf-8 617.9183ms
+2025-06-23 13:56:58.806 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/josh - null null
+2025-06-23 13:56:58.807 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2)'
+2025-06-23 13:56:58.812 +01:00 [INF] Route matched with {action = "GetStudentByName", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO] GetStudentByName(System.String) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 13:56:58.836 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2) - Validation state: "Valid"
+2025-06-23 13:56:58.990 +01:00 [INF] Executed DbCommand (114ms) [Parameters=[@__name_0='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+WHERE [s].[Name] = @__name_0
+2025-06-23 13:56:58.992 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 155.4538ms.
+2025-06-23 13:56:58.992 +01:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI2.Models.StudentDTO'.
+2025-06-23 13:56:58.993 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2) in 180.3998ms
+2025-06-23 13:56:58.993 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2)'
+2025-06-23 13:56:58.993 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/josh - 200 121 application/json; charset=utf-8 186.6379ms
+2025-06-23 13:58:31.728 +01:00 [INF] Application is shutting down...
+2025-06-23 13:59:03.261 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-23 13:59:03.410 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 13:59:03.412 +01:00 [INF] Hosting environment: Development
+2025-06-23 13:59:03.412 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-23 13:59:10.549 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-23 13:59:11.088 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 563.814ms
+2025-06-23 13:59:14.129 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-23 13:59:16.385 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2255.9298ms
+2025-06-23 13:59:30.375 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/DependencyInjection/basic - null null
+2025-06-23 13:59:30.497 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 13:59:30.517 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2)'
+2025-06-23 13:59:30.700 +01:00 [INF] Route matched with {action = "Index", controller = "DependencyInjection"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller WebAPI2.Controllers.DependencyInjectionController (WebAPI2).
+2025-06-23 13:59:30.785 +01:00 [INF] Executing action method WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2) - Validation state: "Valid"
+2025-06-23 13:59:30.870 +01:00 [INF] Executed action method WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkResult in 19.9179ms.
+2025-06-23 13:59:30.945 +01:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-06-23 13:59:30.995 +01:00 [INF] Executed action WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2) in 242.936ms
+2025-06-23 13:59:30.996 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2)'
+2025-06-23 13:59:30.996 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/DependencyInjection/basic - 200 0 null 621.8235ms
+2025-06-23 13:59:44.096 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-23 13:59:44.100 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 13:59:44.107 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 13:59:44.991 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-23 13:59:45.000 +01:00 [INF] Got all students
+2025-06-23 13:59:49.239 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 4246.0584ms.
+2025-06-23 13:59:49.291 +01:00 [INF] Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-23 13:59:53.848 +01:00 [INF] Executed DbCommand (578ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Name], [s].[Email], [s].[Address], [s].[DateOfBirth]
+FROM [Students] AS [s]
+2025-06-23 13:59:54.662 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 10553.747ms
+2025-06-23 13:59:54.664 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 13:59:54.746 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 356 application/json; charset=utf-8 10650.0142ms
+2025-06-23 14:00:04.844 +01:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5276/api/Student/1 - null null
+2025-06-23 14:00:04.847 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2)'
+2025-06-23 14:00:04.873 +01:00 [INF] Route matched with {action = "DeleteStudentById", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Boolean] DeleteStudentById(Int32) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:00:04.907 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2) - Validation state: "Valid"
+2025-06-23 14:00:05.838 +01:00 [INF] Executed DbCommand (115ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-06-23 14:00:06.794 +01:00 [INF] Executed DbCommand (204ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [Students]
+OUTPUT 1
+WHERE [Id] = @p0;
+2025-06-23 14:00:06.819 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1911.1127ms.
+2025-06-23 14:00:06.820 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Boolean'.
+2025-06-23 14:00:06.824 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2) in 1950.7598ms
+2025-06-23 14:00:06.824 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.DeleteStudentById (WebAPI2)'
+2025-06-23 14:00:06.825 +01:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5276/api/Student/1 - 200 4 application/json; charset=utf-8 1980.9297ms
+2025-06-23 14:00:24.925 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/yej - null null
+2025-06-23 14:00:24.937 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2)'
+2025-06-23 14:00:24.955 +01:00 [INF] Route matched with {action = "GetStudentByName", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO] GetStudentByName(System.String) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:00:24.977 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2) - Validation state: "Valid"
+2025-06-23 14:00:26.336 +01:00 [INF] Executed DbCommand (935ms) [Parameters=[@__name_0='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+WHERE [s].[Name] = @__name_0
+2025-06-23 14:00:26.338 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2), returned result Microsoft.AspNetCore.Mvc.NotFoundObjectResult in 1360.6334ms.
+2025-06-23 14:00:26.339 +01:00 [INF] Executing NotFoundObjectResult, writing value of type 'System.String'.
+2025-06-23 14:00:26.339 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2) in 1384.3639ms
+2025-06-23 14:00:26.340 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetStudentByName (WebAPI2)'
+2025-06-23 14:00:26.341 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/yej - 404 null text/plain; charset=utf-8 1416.9673ms
+2025-06-23 14:01:01.372 +01:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:5276/api/Student/3/updatePartial - application/json-patch+json 74
+2025-06-23 14:01:01.372 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.UpdateStudentPartial (WebAPI2)'
+2025-06-23 14:01:01.380 +01:00 [INF] Route matched with {action = "UpdateStudentPartial", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO] UpdateStudentPartial(Microsoft.AspNetCore.JsonPatch.JsonPatchDocument`1[WebAPI2.Models.StudentDTO], Int32) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:01:01.753 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.UpdateStudentPartial (WebAPI2) - Validation state: "Valid"
+2025-06-23 14:01:02.337 +01:00 [INF] Executed DbCommand (540ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+WHERE [s].[Id] = @__id_0
+2025-06-23 14:01:03.352 +01:00 [INF] Executed DbCommand (898ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Students] SET [Name] = @p0
+OUTPUT 1
+WHERE [Id] = @p1;
+2025-06-23 14:01:03.356 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.UpdateStudentPartial (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1602.69ms.
+2025-06-23 14:01:03.357 +01:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI2.Data.Student'.
+2025-06-23 14:01:03.363 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.UpdateStudentPartial (WebAPI2) in 1982.6755ms
+2025-06-23 14:01:03.363 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.UpdateStudentPartial (WebAPI2)'
+2025-06-23 14:01:03.363 +01:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:5276/api/Student/3/updatePartial - 200 123 application/json; charset=utf-8 1991.6757ms
+2025-06-23 14:01:14.132 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-23 14:01:14.133 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 14:01:14.133 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:01:14.134 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-23 14:01:14.134 +01:00 [INF] Got all students
+2025-06-23 14:01:14.136 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1.8698ms.
+2025-06-23 14:01:14.137 +01:00 [INF] Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-23 14:01:14.295 +01:00 [INF] Executed DbCommand (152ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Name], [s].[Email], [s].[Address], [s].[DateOfBirth]
+FROM [Students] AS [s]
+2025-06-23 14:01:14.298 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 164.2667ms
+2025-06-23 14:01:14.298 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 14:01:14.299 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 241 application/json; charset=utf-8 166.6478ms
+2025-06-23 14:01:46.731 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5276/api/Student/create - application/json-patch+json 152
+2025-06-23 14:01:46.731 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2)'
+2025-06-23 14:01:46.736 +01:00 [INF] Route matched with {action = "RegisterStudent", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO] RegisterStudent(WebAPI2.Models.StudentDTO) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:01:46.827 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2) in 90.7837ms
+2025-06-23 14:01:46.828 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2)'
+2025-06-23 14:01:46.925 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidCastException: Unable to cast object of type 'System.DateOnly' to type 'System.DateTime'.
+   at WebAPI2.Validators.DateCheckAttribute.IsValid(Object value, ValidationContext validationContext) in C:\Users\hp\RiderProjects\WebAPI2\WebAPI2\Validators\DateCheckAttribute.cs:line 17
+   at System.ComponentModel.DataAnnotations.ValidationAttribute.GetValidationResult(Object value, ValidationContext validationContext)
+   at Microsoft.AspNetCore.Mvc.DataAnnotations.DataAnnotationsModelValidator.Validate(ModelValidationContext validationContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitChildren(IValidationStrategy strategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-23 14:01:46.953 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5276/api/Student/create - 500 null text/plain; charset=utf-8 222.3981ms
+2025-06-23 14:03:57.008 +01:00 [INF] Application is shutting down...
+2025-06-23 14:04:23.009 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-23 14:04:23.317 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 14:04:23.320 +01:00 [INF] Hosting environment: Development
+2025-06-23 14:04:23.321 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-23 14:04:52.514 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-23 14:04:53.050 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 566.9305ms
+2025-06-23 14:05:00.238 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-23 14:05:01.310 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1068.2103ms
+2025-06-23 14:05:24.019 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5276/api/Student/create - application/json-patch+json 152
+2025-06-23 14:05:24.120 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 14:05:24.139 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2)'
+2025-06-23 14:05:24.342 +01:00 [INF] Route matched with {action = "RegisterStudent", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO] RegisterStudent(WebAPI2.Models.StudentDTO) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:05:26.339 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2) in 1948.0013ms
+2025-06-23 14:05:26.342 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2)'
+2025-06-23 14:05:26.484 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidCastException: Unable to cast object of type 'System.DateOnly' to type 'System.DateTime'.
+   at WebAPI2.Validators.DateCheckAttribute.IsValid(Object value, ValidationContext validationContext) in C:\Users\hp\RiderProjects\WebAPI2\WebAPI2\Validators\DateCheckAttribute.cs:line 17
+   at System.ComponentModel.DataAnnotations.ValidationAttribute.GetValidationResult(Object value, ValidationContext validationContext)
+   at Microsoft.AspNetCore.Mvc.DataAnnotations.DataAnnotationsModelValidator.Validate(ModelValidationContext validationContext)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.ValidateNode()
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitChildren(IValidationStrategy strategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitComplexType(IValidationStrategy defaultStrategy)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.VisitImplementation(ModelMetadata& metadata, String& key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.Validation.ValidationVisitor.Visit(ModelMetadata metadata, String key, Object model)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ObjectModelValidator.Validate(ActionContext actionContext, ValidationStateDictionary validationState, String prefix, Object model, ModelMetadata metadata, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.EnforceBindRequiredAndValidate(ObjectModelValidator baseObjectValidator, ActionContext actionContext, ParameterDescriptor parameter, ModelMetadata metadata, ModelBindingContext modelBindingContext, ModelBindingResult modelBindingResult, Object container)
+   at Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder.BindModelAsync(ActionContext actionContext, IModelBinder modelBinder, IValueProvider valueProvider, ParameterDescriptor parameter, ModelMetadata metadata, Object value, Object container)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerBinderDelegateProvider.<>c__DisplayClass0_0.<<CreateBinderDelegate>g__Bind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-23 14:05:26.531 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5276/api/Student/create - 500 null text/plain; charset=utf-8 2511.6904ms
+2025-06-23 14:06:39.737 +01:00 [INF] Application is shutting down...
+2025-06-23 14:06:52.328 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-23 14:06:52.479 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 14:06:52.482 +01:00 [INF] Hosting environment: Development
+2025-06-23 14:06:52.482 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-23 14:06:53.104 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-23 14:06:53.572 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 454.1628ms
+2025-06-23 14:06:56.380 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-23 14:06:58.067 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1687.2429ms
+2025-06-23 14:07:12.828 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-23 14:07:13.177 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 14:07:13.203 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 14:07:13.507 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:07:18.646 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-23 14:07:18.714 +01:00 [INF] Got all students
+2025-06-23 14:07:25.160 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 6436.5375ms.
+2025-06-23 14:07:25.257 +01:00 [INF] Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-23 14:07:29.947 +01:00 [INF] Executed DbCommand (219ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Name], [s].[Email], [s].[Address], [s].[DateOfBirth]
+FROM [Students] AS [s]
+2025-06-23 14:07:30.832 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 17264.4817ms
+2025-06-23 14:07:30.846 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 14:07:31.003 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 241 application/json; charset=utf-8 18298.973ms
+2025-06-23 14:07:46.059 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5276/api/Student/create - application/json-patch+json 152
+2025-06-23 14:07:46.065 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2)'
+2025-06-23 14:07:46.127 +01:00 [INF] Route matched with {action = "RegisterStudent", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO] RegisterStudent(WebAPI2.Models.StudentDTO) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:07:46.483 +01:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-06-23 14:07:47.365 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2) in 1237.0145ms
+2025-06-23 14:07:47.365 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2)'
+2025-06-23 14:07:47.366 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5276/api/Student/create - 400 270 application/problem+json; charset=utf-8 1306.4905ms
+2025-06-23 14:09:06.401 +01:00 [INF] Application is shutting down...
+2025-06-23 14:09:21.849 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-23 14:09:22.045 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 14:09:22.058 +01:00 [INF] Hosting environment: Development
+2025-06-23 14:09:22.058 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-23 14:09:22.856 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-23 14:09:23.719 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 868.9901ms
+2025-06-23 14:09:25.912 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-23 14:09:27.156 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1244.5129ms
+2025-06-23 14:09:43.309 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5276/api/Student/create - application/json-patch+json 152
+2025-06-23 14:09:43.710 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 14:09:43.763 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2)'
+2025-06-23 14:09:44.196 +01:00 [INF] Route matched with {action = "RegisterStudent", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.StudentDTO] RegisterStudent(WebAPI2.Models.StudentDTO) on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:09:46.649 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2) - Validation state: "Valid"
+2025-06-23 14:09:54.240 +01:00 [INF] Executed DbCommand (1,387ms) [Parameters=[@p0='?' (Size = 300), @p1='?' (DbType = Date), @p2='?' (Size = 60), @p3='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Students] ([Address], [DateOfBirth], [Email], [Name])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2025-06-23 14:09:54.561 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2), returned result Microsoft.AspNetCore.Mvc.CreatedAtRouteResult in 7802.8131ms.
+2025-06-23 14:09:54.620 +01:00 [INF] Executing CreatedAtRouteResult, writing value of type 'WebAPI2.Models.StudentDTO'.
+2025-06-23 14:09:54.932 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2) in 10643.8246ms
+2025-06-23 14:09:54.933 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.RegisterStudent (WebAPI2)'
+2025-06-23 14:09:54.984 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5276/api/Student/create - 201 116 application/json; charset=utf-8 11674.7768ms
+2025-06-23 14:10:06.205 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-23 14:10:06.210 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 14:10:06.216 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 14:10:06.221 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-23 14:10:06.230 +01:00 [INF] Got all students
+2025-06-23 14:10:06.490 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 269.0782ms.
+2025-06-23 14:10:06.493 +01:00 [INF] Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-23 14:10:07.993 +01:00 [INF] Executed DbCommand (179ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Name], [s].[Email], [s].[Address], [s].[DateOfBirth]
+FROM [Students] AS [s]
+2025-06-23 14:10:08.162 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 1945.8891ms
+2025-06-23 14:10:08.166 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 14:10:08.181 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 358 application/json; charset=utf-8 1976.6994ms
+2025-06-23 14:10:35.593 +01:00 [INF] Application is shutting down...
+2025-06-23 18:08:15.619 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-23 18:08:15.814 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 18:08:15.819 +01:00 [INF] Hosting environment: Development
+2025-06-23 18:08:15.819 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-23 18:09:37.029 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-23 18:09:37.568 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 552.7373ms
+2025-06-23 18:09:41.140 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-23 18:09:42.211 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1070.7151ms
+2025-06-23 18:09:48.614 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-23 18:09:48.745 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 18:09:48.761 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 18:09:48.942 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 18:09:50.377 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-23 18:09:50.383 +01:00 [INF] Got all students
+2025-06-23 18:09:50.469 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 26.6632ms.
+2025-06-23 18:09:50.573 +01:00 [INF] Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1[[WebAPI2.Data.Student, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-23 18:09:58.057 +01:00 [INF] Executed DbCommand (157ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+2025-06-23 18:09:58.767 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 9784.2197ms
+2025-06-23 18:09:58.770 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 18:09:58.823 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 358 application/json; charset=utf-8 10208.8632ms
+2025-06-23 18:33:41.218 +01:00 [INF] Application is shutting down...
+2025-06-23 18:54:52.184 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-23 18:54:52.473 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-23 18:54:52.477 +01:00 [INF] Hosting environment: Development
+2025-06-23 18:54:52.477 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-23 18:54:52.543 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-23 18:54:53.222 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 687.9828ms
+2025-06-23 18:54:57.834 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-23 18:54:59.398 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1564.1713ms
+2025-06-23 18:55:10.187 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-23 18:55:10.395 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-23 18:55:10.411 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 18:55:10.876 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-23 18:55:13.177 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-23 18:55:13.191 +01:00 [INF] Got all students
+2025-06-23 18:55:13.246 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 8.5802ms.
+2025-06-23 18:55:13.320 +01:00 [INF] Executing OkObjectResult, writing value of type 'Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1[[WebAPI2.Data.Student, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-23 18:55:19.846 +01:00 [INF] Executed DbCommand (272ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+2025-06-23 18:55:20.980 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 10047.3587ms
+2025-06-23 18:55:20.986 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-23 18:55:21.120 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 358 application/json; charset=utf-8 10932.6028ms
+2025-06-23 18:57:26.319 +01:00 [INF] Application is shutting down...

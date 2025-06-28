@@ -1,0 +1,62 @@
+2025-06-18 09:11:46.633 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-18 09:11:46.771 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-18 09:11:46.772 +01:00 [INF] Hosting environment: Development
+2025-06-18 09:11:46.772 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-18 09:11:47.337 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger - null null
+2025-06-18 09:11:47.544 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger - 301 0 null 215.5752ms
+2025-06-18 09:11:47.651 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-18 09:11:48.109 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 457.9446ms
+2025-06-18 09:11:48.313 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/swagger-ui.css - null null
+2025-06-18 09:11:48.315 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/swagger-ui-bundle.js - null null
+2025-06-18 09:11:48.343 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/swagger-ui-standalone-preset.js - null null
+2025-06-18 09:11:48.496 +01:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-06-18 09:11:48.507 +01:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-06-18 09:11:48.527 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 211.9415ms
+2025-06-18 09:11:48.534 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/swagger-ui.css - 200 143943 text/css 214.5174ms
+2025-06-18 09:11:48.577 +01:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-06-18 09:11:48.577 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/swagger-ui-standalone-preset.js - 200 339486 text/javascript 233.7042ms
+2025-06-18 09:11:50.520 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/favicon-32x32.png - null null
+2025-06-18 09:11:50.520 +01:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-06-18 09:11:50.520 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/favicon-32x32.png - 200 628 image/png 0.8869ms
+2025-06-18 09:11:50.657 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-18 09:11:51.814 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1156.5086ms
+2025-06-18 09:12:01.546 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/DependencyInjection/basic - null null
+2025-06-18 09:12:01.592 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-18 09:12:01.612 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2)'
+2025-06-18 09:12:01.670 +01:00 [INF] Route matched with {action = "Index", controller = "DependencyInjection"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller WebAPI2.Controllers.DependencyInjectionController (WebAPI2).
+2025-06-18 09:12:01.717 +01:00 [INF] Executing action method WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2) - Validation state: "Valid"
+2025-06-18 09:12:01.990 +01:00 [INF] Executed action method WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkResult in 223.7998ms.
+2025-06-18 09:12:02.250 +01:00 [INF] Executing StatusCodeResult, setting HTTP status code 200
+2025-06-18 09:12:02.288 +01:00 [INF] Executed action WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2) in 579.4829ms
+2025-06-18 09:12:02.289 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.DependencyInjectionController.Index (WebAPI2)'
+2025-06-18 09:12:02.289 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/DependencyInjection/basic - 200 0 null 743.1239ms
+2025-06-18 09:12:48.780 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-18 09:12:48.783 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-18 09:12:48.793 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-18 09:12:48.795 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-18 09:12:48.801 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 5.4445ms.
+2025-06-18 09:12:48.815 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[WebAPI2.Models.Student, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-18 09:12:49.099 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 305.345ms
+2025-06-18 09:12:49.100 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-18 09:12:49.100 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 657 application/json; charset=utf-8 319.7854ms
+2025-06-18 09:13:39.963 +01:00 [INF] Application is shutting down...
+2025-06-18 09:13:51.258 +01:00 [INF] Now listening on: http://localhost:5276
+2025-06-18 09:13:51.364 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-18 09:13:51.365 +01:00 [INF] Hosting environment: Development
+2025-06-18 09:13:51.365 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-06-18 09:13:52.434 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-06-18 09:13:53.092 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 660.8445ms
+2025-06-18 09:13:56.710 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-06-18 09:13:57.494 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 783.9171ms
+2025-06-18 09:14:05.910 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-06-18 09:14:05.951 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-06-18 09:14:05.959 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-18 09:14:06.050 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-06-18 09:14:06.105 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-06-18 09:14:06.108 +01:00 [INF] Got all students
+2025-06-18 09:14:06.131 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 4.385ms.
+2025-06-18 09:14:06.173 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[WebAPI2.Models.Student, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-18 09:14:06.708 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 638.3799ms
+2025-06-18 09:14:06.708 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-06-18 09:14:06.709 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 657 application/json; charset=utf-8 799.1488ms
+2025-06-18 09:14:57.984 +01:00 [INF] Application is shutting down...
