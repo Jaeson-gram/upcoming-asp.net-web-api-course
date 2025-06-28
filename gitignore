@@ -1,0 +1,69 @@
+﻿# .NET Core
+bin/
+obj/
+*.csproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Core
+appsettings.Development.json
+appsettings.Test.json
+wwwroot/
+
+# Visual Studio
+.vscode/
+*.vs/
+*.code-workspace
+
+# Rider (JetBrains)
+.idea/
+*.iml
+
+# Build and runtime
+*.dll
+*.exe
+*.pdb
+*.log
+*.cache
+*.tmp
+*.temp
+*.swp
+*~
+
+# Dependency directories
+node_modules/
+wwwroot/lib/
+
+# Test and coverage
+TestResults/
+*.trx
+*.coverage
+coverage.*
+
+# Environment files
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Docker
+docker-compose.override.yml
+Dockerfile.user
+
+# Package management
+*.nupkg
+packages/
+
+# Miscellaneous
+Thumbs.db
+.DS_Store
+*.bak
+*.backup
+
+# Azure and other cloud deployment
+*.publishsettings
+*.pubxml
+*.pubxml.user
