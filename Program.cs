@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Serilog;
 using WebAPI2.Configurations;
 using WebAPI2.Data;
+using WebAPI2.Data.Repository;
 using WebAPI2.Logs;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -50,7 +51,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 //dependency injection --> whenever we use the ILog in the ctor, use the {second argument below} for it. ()
-builder.Services.AddScoped<ILog, LogToDb>();
+builder.Services.AddTransient<ILog, LogToDb>();
+builder.Services.AddTransient<IStudentRepository, StudentRepository>();
 
 
 

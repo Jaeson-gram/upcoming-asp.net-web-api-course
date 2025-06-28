@@ -1,14 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using WebAPI2.Models;
 
 namespace WebAPI2.Data.Repository;
 
 public class StudentRepository : IStudentRepository
 {
     private readonly SchoolDbContext _dbContext;
+    private readonly IMapper _mapper;
 
-    public StudentRepository(SchoolDbContext dbContext)
+    public StudentRepository(SchoolDbContext dbContext, IMapper mapper)
     {
         _dbContext = dbContext;
+        _mapper = mapper;
     }
     
     public async Task<List<Student?>> GetAllAsync()
@@ -16,8 +20,12 @@ public class StudentRepository : IStudentRepository
         return await _dbContext.Students.ToListAsync();
     }
 
-    public async Task<Student?> GetByIdAsync(int id)
+    public async Task<Student?> GetByIdAsync(int id, bool noTracking = false)
     {
+        if (noTracking)
+        {
+            return await _dbContext.Students.AsNoTracking().Where(s => s.Id == id).FirstOrDefaultAsync();
+        }
         // return await _dbContext.Students.FindAsync(id);
         
         return await _dbContext.Students.Where(s => s.Id == id).FirstOrDefaultAsync();
@@ -38,28 +46,15 @@ public class StudentRepository : IStudentRepository
     public async Task<Student> Update(Student student)
     {
         //using the same query code but FirstOrDefault() and not FirstOrDefaultAsync() is not awaitable, in which case .Where() is used first, then FirstOrDefault()
-        
-        var studentToUpdate = await _dbContext.Students.AsNoTracking().FirstOrDefaultAsync(s => s.Id == student.Id);
 
-        if (studentToUpdate is not null)
-        {
-            throw new ArgumentNullException($"No student with the id '{student.Id}' found'");
-        }
-                    
-        studentToUpdate.Name = student.Name;
-        studentToUpdate.Email = student.Email;
-        studentToUpdate.DateOfBirth = student.DateOfBirth;
-        studentToUpdate.DateOfBirth = student.DateOfBirth;
-        
         // await _dbContext.Students.ExecuteUpdateAsync(studentToUpdate);
         // await _dbContext.SaveChangesAsync();
         
         // it needs to return only after it's saved. so i need it synchronous so if anything goes wrong it will be visible before returning student
-        _dbContext.Students.Update(studentToUpdate);
+        _dbContext.Students.Update(student);
         _dbContext.SaveChanges();
 
-        return studentToUpdate;
-        
+        return student;
     }
 
     public bool Delete(int id)

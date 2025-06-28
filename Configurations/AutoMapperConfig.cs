@@ -22,7 +22,7 @@ public class AutoMapperConfig : Profile
 
         
         // config to transform data before it's mapped - for general instances
-        CreateMap<Student, StudentDTO>().AddTransform<string>(d => string.IsNullOrEmpty(d) ? "no data found" : d).ReverseMap();
+        // CreateMap<Student, StudentDTO>().AddTransform<string>(d => string.IsNullOrEmpty(d) ? "no data found" : d).ReverseMap();
         
         // the address field is the only one nullable in our StudentConfig file so we can be more specific with the display message as the next CreateMap instance below
 
@@ -32,6 +32,9 @@ public class AutoMapperConfig : Profile
         // CreateMap<Student, StudentDTO>()
         //     .ForMember(s => s.Address, opt => opt.MapFrom(a => string.IsNullOrEmpty(a.Address) ? "no address found" : a.Address))
         //     .ForMember(s => s.Email, opt => opt.MapFrom(a => string.IsNullOrEmpty(a.Email) ? "no email found" : a.Email)).ReverseMap();
+
+        // custom 
+        CreateMap<Student, StudentDTO>().AddTransform<string>(d => string.IsNullOrEmpty(d) ? "no data found" : d).ForMember(s => s.DOB, opt => opt.MapFrom(s => s.DateOfBirth)).ReverseMap();
 
     }   
 }
