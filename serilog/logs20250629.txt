@@ -71,3 +71,4 @@ FROM [Students] AS [s]
 2025-06-29 00:03:38.825 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 19.6462ms
 2025-06-29 00:03:38.825 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
 2025-06-29 00:03:38.825 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 861 application/json; charset=utf-8 53.89ms
+2025-06-29 00:07:52.524 +01:00 [INF] Application is shutting down...
