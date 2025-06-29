@@ -20,7 +20,7 @@ public class SchoolRepository<T> : ISchoolRepository<T> where T : class
     }
 
 
-     public async Task<T?> GetByIdAsync(Expression<Func<T?, bool>> filter, bool noTracking = false)
+     public async Task<T?> GetAsync(Expression<Func<T?, bool>> filter, bool noTracking = false)
      {
             if (noTracking)
             {
@@ -31,10 +31,11 @@ public class SchoolRepository<T> : ISchoolRepository<T> where T : class
             return await _dbSet.Where(filter).FirstOrDefaultAsync();
      }
 
-     public async Task<T?> GetByNameAsync(Expression<Func<T, bool>> filter)
-     {
-         return await _dbSet.Where(filter).FirstOrDefaultAsync();
-     }
+     // we already have a filter so no need to add two methods for it. we can use the above and pass a filter for any given implementation
+     // public async Task<T?> GetByNameAsync(Expression<Func<T, bool>> filter)
+     // {
+     //     return await _dbSet.Where(filter).FirstOrDefaultAsync();
+     // // }
 
     public async Task<T> CreateAsync(T dbRecord)
     {

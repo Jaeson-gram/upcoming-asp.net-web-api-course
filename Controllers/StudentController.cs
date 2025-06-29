@@ -66,7 +66,7 @@ namespace WebAPI2.Controllers
                 return BadRequest(); //400 Bad Request
             }
             
-            var student = await _studentRepo.GetByIdAsync(student => student.Id == id, false);
+            var student = await _studentRepo.GetAsync(student => student.Id == id, false);
 
             if (student == null)
             {
@@ -95,7 +95,7 @@ namespace WebAPI2.Controllers
                 return BadRequest("name cannot be empty"); //400 Bad Request
             }
 
-            var student = await _studentRepo.GetByNameAsync(student => student.Name.ToLower().Contains(name.ToLower()));
+            var student = await _studentRepo.GetAsync(student => student.Name.ToLower().Contains(name.ToLower()), false);
 
             if (student == null)
             {
@@ -121,7 +121,7 @@ namespace WebAPI2.Controllers
                 return BadRequest("wrong id"); //400 Bad Request
             }
             
-            var student = await _studentRepo.GetByIdAsync(stu => stu.Id == id, false);
+            var student = await _studentRepo.GetAsync(stu => stu.Id == id, false);
 
             if (student == null)
             {
@@ -162,7 +162,7 @@ namespace WebAPI2.Controllers
                 return BadRequest();
             }
 
-            var studentToPatch = await _studentRepo.GetByIdAsync(stu => stu.Id == studentId, true);
+            var studentToPatch = await _studentRepo.GetAsync(stu => stu.Id == studentId, true);
             
             // var studentToPatch2 = _dbContext.Students.AsNoTracking().FirstOrDefault(s => s.Id == studentId);
             
@@ -196,7 +196,7 @@ namespace WebAPI2.Controllers
             }
             
             //fetch the student to patch
-            var studentToPatch = await _studentRepo.GetByIdAsync(stu => stu.Id == id, true);
+            var studentToPatch = await _studentRepo.GetAsync(stu => stu.Id == id, true);
         
             if (studentToPatch == null)
             {
