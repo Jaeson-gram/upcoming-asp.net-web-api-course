@@ -44,6 +44,12 @@ public class StudentConfig : IEntityTypeConfiguration<Student>
                 DateOfBirth = new DateTime(2001, 03, 28)
             },
         });
-
+        
+        // creating the foreign key..
+        builder.HasOne(s => s.Dept).WithMany(s => s.Students).HasForeignKey(s => s.DeptId).HasConstraintName("FK_Student_Dept");
+        
+        // HasOne - creates a relationship where Student points to a single instance of... (whatever type in the expression '()')
+        // WithMany - with the type in the HasOne, make a one-to-many relationship and choose which property type in class should be related to (where the type in the expression '()' is a collection since it's one-to-many)
+        // HasForeignKey - what should be the foreign key?
     }
 }

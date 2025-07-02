@@ -22,6 +22,81 @@ namespace WebAPI2.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("WebAPI2.Data.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("DepartmentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FacultyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departments", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DepartmentName = "Systems Engineering, Design and Analysis",
+                            Description = "systems from the ground up",
+                            FacultyName = "Computing"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DepartmentName = "Artificial Intelligence",
+                            Description = "making computers intelligent",
+                            FacultyName = "Computing"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DepartmentName = "Cloud Computing",
+                            Description = "computing on the cloud",
+                            FacultyName = "Computing"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DepartmentName = "Quantum Physics",
+                            Description = "the physics of small things",
+                            FacultyName = "Physical Sciences"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DepartmentName = "Theoretical Physics",
+                            Description = "when physics is simply observation and poetry",
+                            FacultyName = "Physical Sciences"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DepartmentName = "Abstract Mathematics",
+                            Description = "the maths of the unseen",
+                            FacultyName = "Mathematical Sciences"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DepartmentName = "Applied Mathematics",
+                            Description = "the maths of everyday things",
+                            FacultyName = "Mathematical Sciences"
+                        });
+                });
+
             modelBuilder.Entity("WebAPI2.Data.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -34,13 +109,16 @@ namespace WebAPI2.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
-                    b.Property<DateOnly>("DateOfBirth")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeptId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -49,14 +127,16 @@ namespace WebAPI2.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.HasIndex("DeptId");
+
+                    b.ToTable("Students", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             Address = "port 11, esville, ah, riv, ng, af",
-                            DateOfBirth = new DateOnly(2000, 4, 13),
+                            DateOfBirth = new DateTime(2000, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "yej@jey.com",
                             Name = "yej"
                         },
@@ -64,7 +144,7 @@ namespace WebAPI2.Migrations
                         {
                             Id = 2,
                             Address = "port 11, esville, ah, riv, ng, af",
-                            DateOfBirth = new DateOnly(2006, 4, 7),
+                            DateOfBirth = new DateTime(2006, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "uk@okey.com",
                             Name = "uk"
                         },
@@ -72,10 +152,25 @@ namespace WebAPI2.Migrations
                         {
                             Id = 3,
                             Address = "port 13, esville, ah, riv, ng, af",
-                            DateOfBirth = new DateOnly(2001, 3, 28),
+                            DateOfBirth = new DateTime(2001, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "josh@yeshua.com",
                             Name = "josh"
                         });
+                });
+
+            modelBuilder.Entity("WebAPI2.Data.Student", b =>
+                {
+                    b.HasOne("WebAPI2.Data.Department", "Dept")
+                        .WithMany("Students")
+                        .HasForeignKey("DeptId")
+                        .HasConstraintName("FK_Student_Dept");
+
+                    b.Navigation("Dept");
+                });
+
+            modelBuilder.Entity("WebAPI2.Data.Department", b =>
+                {
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }
