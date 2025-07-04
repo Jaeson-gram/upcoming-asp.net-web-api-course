@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using WebAPI2.Data;
@@ -9,16 +10,11 @@ namespace WebAPI2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors(PolicyName = "LocalHost")] 
+    // enabling cors so only origins allowed in the named policy will have access here. this will override the middleware policy
     public class StudentController : ControllerBase
     {
-        //dependency injection testing
-        // private readonly ILog _log;
-        //
-        // public StudentController(ILog log)
-        // {
-        //     _log = log;
-        // }
-        
+     
         private readonly ILogger<StudentController> _logger;
         // private readonly SchoolDbContext _dbContext;
         private readonly IMapper _mapper;
@@ -226,7 +222,6 @@ namespace WebAPI2.Controllers
             return Ok(studentToPatch);
 
         }
-
     }
 }
 

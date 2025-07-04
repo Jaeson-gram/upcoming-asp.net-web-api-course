@@ -57,21 +57,41 @@ builder.Services.AddTransient(typeof(ISchoolRepository<>), typeof(SchoolReposito
 // cors
 // builder.Services.AddCors(options => options.AddPolicy("AllowAll", p => p.WithOrigins("http://localhost:3000")));
 
-builder.Services.AddCors(options => options.AddPolicy("corsAllOrigins",
-    policy =>
+
+builder.Services.AddCors(options =>
+{
+
+    options.AddDefaultPolicy(policy =>
     {
         //allow all origins
         policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-    }));
+    });
 
-// origins can be added per policy and customised as desired...
-builder.Services.AddCors(options => options.AddPolicy("corsCustomOriginAndHeaders",
-    policy =>
+    // origins can be added per policy and customised as desired...
+    options.AddPolicy("corsCustomOriginAndHeaders", policy => 
+    { 
+            //allow specific origins/headers/methods/headers
+            policy.WithOrigins("http://localhost:5120", "http://localhost:5140", "https://www.yourapp.com").WithMethods("GET", "POST");
+    });
+    
+    options.AddPolicy("LocalHost", policyBuilder => 
+    { 
+            //allow only localhost test origins/headers/methods/headers
+            policyBuilder.WithOrigins("http://localhost:5120", "http://localhost:5140").AllowAnyMethod().AllowAnyHeader();
+    });
+
+    options.AddPolicy(name: "OnlyGroupTest", policyBuilder =>
     {
-        //allow specific origins/headers/methods/headers
-        policy.WithOrigins("http://localhost:5120", "http://localhost:5140", "https://www.yourapp.com").WithMethods("GET", "POST");
-    }));
+        policyBuilder.WithOrigins("https://www.yourgroupproject.com", "https://www.yourmailingservice.com", "https://www.yourcallservice.com").WithMethods("GET", "POST");
+    });
+    
+    options.AddPolicy(name: "ForHiring", policyBuilder =>
+    {
+        policyBuilder.WithOrigins("https://www.geniuses.com", "https://www.skillplace.com", "https://www.workaholic.com").WithMethods("GET", "POST");
+    });
 
+});
+   
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -82,8 +102,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors("corsAllOrigins");
-app.UseCors("corsCustomOriginAndHeaders");
+app.UseCors(); // uses default
+// app.UseCors("OnlyGroupTest"); // specific 
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
