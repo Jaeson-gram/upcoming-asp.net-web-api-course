@@ -54,8 +54,23 @@ builder.Services.AddTransient<ILog, LogToDb>();
 builder.Services.AddTransient<IStudentRepository, StudentRepository>();
 builder.Services.AddTransient(typeof(ISchoolRepository<>), typeof(SchoolRepository<>));
 
+// cors
+// builder.Services.AddCors(options => options.AddPolicy("AllowAll", p => p.WithOrigins("http://localhost:3000")));
 
+builder.Services.AddCors(options => options.AddPolicy("corsAllOrigins",
+    policy =>
+    {
+        //allow all origins
+        policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+    }));
 
+// origins can be added per policy and customised as desired...
+builder.Services.AddCors(options => options.AddPolicy("corsCustomOriginAndHeaders",
+    policy =>
+    {
+        //allow specific origins/headers/methods/headers
+        policy.WithOrigins("http://localhost:5120", "http://localhost:5140", "https://www.yourapp.com").WithMethods("GET", "POST");
+    }));
 
 var app = builder.Build();
 
@@ -67,6 +82,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("corsAllOrigins");
+app.UseCors("corsCustomOriginAndHeaders");
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
