@@ -10,8 +10,9 @@ namespace WebAPI2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors(PolicyName = "LocalHost")] 
-    // enabling cors so only origins allowed in the named policy will have access here. this will override the middleware policy
+    [EnableCors(PolicyName = "LocalHost")]
+    // enabling cors so only origins allowed in the named policy 'LocalHost' will have access here. this will override the middleware policy
+    // [EnableCors(PolicyName = "LocalHost")] -- you can also configure policy for individual endpoints, which overrides the controller policy
     public class StudentController : ControllerBase
     {
      
@@ -133,6 +134,8 @@ namespace WebAPI2.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        // [ DisableCors] -- disabling cors for a particular endpoint revokes the controller cors policy
+
         public async Task<ActionResult<StudentDTO>> RegisterStudentAsync([FromBody] StudentDTO studentModel)
         {
             _logger.LogInformation("RegisterStudentAsync() called!");
@@ -182,6 +185,7 @@ namespace WebAPI2.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        // [EnableCors(PolicyName = "LocalHost")] -- using custom cors policy for a particular endpoint overrides the controller policy for that endpoint
         public async Task<ActionResult<StudentDTO>> UpdateStudentPartialAsync([FromBody] JsonPatchDocument<StudentDTO>? patchDocument, int id)
         {
             _logger.LogInformation("UpdateStudentPartialAsync() called!");
