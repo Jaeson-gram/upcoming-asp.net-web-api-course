@@ -105,6 +105,25 @@ app.UseHttpsRedirection();
 app.UseCors(); // uses default
 // app.UseCors("OnlyGroupTest"); // specific 
 app.UseAuthorization();
+
+// this overrides middleware and EnableCors attribute,
+// requires the app.UseRouting() called, and placed between the below implementation and the app.UseCors()
+// and requires app.MapControllers() inside the endpoint body.
+
+// Also, it is unnecessary and recommendation is that the EnableCors should be used in addition to Middleware, instead of this at all...
+app.UseEndpoints(endpoints =>
+    {
+        // without specifying a policy, it uses the default - which makes the 'RequireCors' unnecessary anyway..
+        endpoints.MapControllers().RequireCors(); 
+        
+        //uses the specified cors policy for the specified endpoint. overrides middleware and EnableCors attribute
+       endpoints.MapGet("api/endpoint1", 
+           context => context.Response.WriteAsync("Hello World!")).RequireCors("LocalHost"); 
+       
+       // without using the RequireCors and specifying which cors policy to use, it applies the default policy to ths endpoint specified
+       endpoints.MapGet("api/endpoint2", 
+           context => context.Response.WriteAsync("Hello World!"));  
+    });
 app.MapControllers();
 app.Run();
 

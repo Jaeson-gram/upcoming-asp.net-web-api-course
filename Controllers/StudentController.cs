@@ -134,7 +134,8 @@ namespace WebAPI2.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        // [ DisableCors] -- disabling cors for a particular endpoint revokes the controller cors policy
+        // [ DisableCors] -- disabling cors for a particular endpoint revokes the controller cors policy.
+        //the DisableCors dows not disable cors that has been enabled by endpoint routing
 
         public async Task<ActionResult<StudentDTO>> RegisterStudentAsync([FromBody] StudentDTO studentModel)
         {
