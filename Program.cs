@@ -1,5 +1,8 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using WebAPI2.Configurations;
 using WebAPI2.Data;
@@ -7,6 +10,10 @@ using WebAPI2.Data.Repository;
 using WebAPI2.Logs;
 
 var builder = WebApplication.CreateBuilder(args);
+var key = builder.Configuration.GetValue<string>("jwtSecret") ??
+          "this is the most ultimate secret: every secret will be revealed";
+
+
 // AppContext.SetSwitch("System.Globalization.Invariant", false);
 
 // builder.Logging.ClearProviders();
@@ -92,6 +99,23 @@ builder.Services.AddCors(options =>
 
 });
    
+// jwt auth
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+    };
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -102,18 +126,21 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-// app.UseCors("OnlyGroupTest"); // specific 
-app.UseRouting();
+
 app.UseCors(); // uses default
+// app.UseCors("OnlyGroupTest"); // specific 
 
 // app.MapControllers();
 app.UseAuthorization();
 
-// this overrides middleware and EnableCors attribute,
-// requires the app.UseRouting() called, and app.UseCors() placed between it app.UseEndpoints()
-// and requires app.MapControllers() inside the endpoint body.
 
-// Also, it is unnecessary and recommendation is that the EnableCors should be used in addition to Middleware, instead of this at all...
+/*
+ * this overrides middleware and EnableCors attribute,
+ * requires the app.UseRouting() called, and app.UseCors() placed between it app.UseEndpoints()
+ * and requires app.MapControllers() inside the endpoint body.
+
+ * Also, it is unnecessary and recommendation is that the EnableCors should be used in addition to Middleware, instead of endpoint routing at all...
+
 app.UseEndpoints(endpoints =>
     {
         // without specifying a policy, it uses the default - which makes the 'RequireCors' unnecessary anyway..
@@ -128,6 +155,8 @@ app.UseEndpoints(endpoints =>
            context => context.Response.WriteAsync("Hello World!"));  
     });
 
-// app.MapControllers(); redundant
+*/
+
+app.MapControllers(); 
 app.Run();
 
