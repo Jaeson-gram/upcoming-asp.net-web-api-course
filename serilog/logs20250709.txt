@@ -1,0 +1,147 @@
+2025-07-09 01:32:36.964 +01:00 [INF] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-09 01:32:37.650 +01:00 [INF] Creating key {afd51fdf-9cab-4ace-9c5c-83a8b3723a18} with creation date 2025-07-09 00:32:37Z, activation date 2025-07-09 00:32:37Z, and expiration date 2025-10-07 00:32:37Z.
+2025-07-09 01:32:37.716 +01:00 [INF] Writing data to file 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys\key-afd51fdf-9cab-4ace-9c5c-83a8b3723a18.xml'.
+2025-07-09 01:32:39.260 +01:00 [INF] Now listening on: http://localhost:5276
+2025-07-09 01:32:39.284 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-09 01:32:39.288 +01:00 [INF] Hosting environment: Development
+2025-07-09 01:32:39.288 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-07-09 01:32:56.153 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-07-09 01:32:57.576 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 1432.4166ms
+2025-07-09 01:33:08.497 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-07-09 01:33:10.682 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2184.4459ms
+2025-07-09 01:33:57.020 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5276/api/Login - application/json-patch+json 62
+2025-07-09 01:33:57.249 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-09 01:33:57.256 +01:00 [INF] CORS policy execution failed.
+2025-07-09 01:33:57.257 +01:00 [INF] Request origin http://localhost:5276 does not have permission to access the resource.
+2025-07-09 01:33:57.279 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.LoginController.Login (WebAPI2)'
+2025-07-09 01:33:57.823 +01:00 [INF] Route matched with {action = "Login", controller = "Login"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.LoginResponseDTO] Login(WebAPI2.Models.LoginDTO) on controller WebAPI2.Controllers.LoginController (WebAPI2).
+2025-07-09 01:33:58.509 +01:00 [INF] Executing action method WebAPI2.Controllers.LoginController.Login (WebAPI2) - Validation state: "Valid"
+2025-07-09 01:33:58.764 +01:00 [INF] Executed action method WebAPI2.Controllers.LoginController.Login (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 209.023ms.
+2025-07-09 01:33:58.827 +01:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI2.Models.LoginResponseDTO'.
+2025-07-09 01:33:59.025 +01:00 [INF] Executed action WebAPI2.Controllers.LoginController.Login (WebAPI2) in 1154.9935ms
+2025-07-09 01:33:59.025 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.LoginController.Login (WebAPI2)'
+2025-07-09 01:33:59.026 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5276/api/Login - 200 206 application/json; charset=utf-8 2005.9651ms
+2025-07-09 01:34:34.899 +01:00 [INF] Application is shutting down...
+2025-07-09 01:51:41.126 +01:00 [INF] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-09 01:51:42.967 +01:00 [INF] Now listening on: http://localhost:5276
+2025-07-09 01:51:43.015 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-09 01:51:43.021 +01:00 [INF] Hosting environment: Development
+2025-07-09 01:51:43.021 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-07-09 01:51:44.477 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-07-09 01:51:45.418 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 953.9372ms
+2025-07-09 01:51:50.886 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-07-09 01:51:51.736 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 850.1482ms
+2025-07-09 01:52:13.278 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-07-09 01:52:13.524 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-09 01:52:13.556 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Superadmin|Admin)
+2025-07-09 01:52:13.573 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-09 01:52:13.574 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 401 0 null 295.7236ms
+2025-07-09 01:52:27.685 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-07-09 01:52:27.700 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Superadmin|Admin)
+2025-07-09 01:52:27.701 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-09 01:52:27.701 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 401 0 null 16.4314ms
+2025-07-09 01:53:27.120 +01:00 [INF] Application is shutting down...
+2025-07-09 01:54:43.055 +01:00 [INF] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-09 01:54:43.569 +01:00 [INF] Now listening on: http://localhost:5276
+2025-07-09 01:54:43.588 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-09 01:54:43.592 +01:00 [INF] Hosting environment: Development
+2025-07-09 01:54:43.592 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-07-09 01:54:44.864 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-07-09 01:54:45.477 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 615.9488ms
+2025-07-09 01:54:49.055 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-07-09 01:54:50.530 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1474.5633ms
+2025-07-09 01:55:01.009 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-07-09 01:55:01.120 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-09 01:55:01.142 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (SuperAdmin|Admin)
+2025-07-09 01:55:01.184 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-09 01:55:01.184 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 401 0 null 175.7345ms
+2025-07-09 01:55:20.812 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5276/api/Login - application/json-patch+json 62
+2025-07-09 01:55:20.821 +01:00 [INF] CORS policy execution failed.
+2025-07-09 01:55:20.822 +01:00 [INF] Request origin http://localhost:5276 does not have permission to access the resource.
+2025-07-09 01:55:20.848 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.LoginController.Login (WebAPI2)'
+2025-07-09 01:55:21.017 +01:00 [INF] Route matched with {action = "Login", controller = "Login"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[WebAPI2.Models.LoginResponseDTO] Login(WebAPI2.Models.LoginDTO) on controller WebAPI2.Controllers.LoginController (WebAPI2).
+2025-07-09 01:55:21.578 +01:00 [INF] Executing action method WebAPI2.Controllers.LoginController.Login (WebAPI2) - Validation state: "Valid"
+2025-07-09 01:55:21.851 +01:00 [INF] Executed action method WebAPI2.Controllers.LoginController.Login (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 210.5177ms.
+2025-07-09 01:55:21.927 +01:00 [INF] Executing OkObjectResult, writing value of type 'WebAPI2.Models.LoginResponseDTO'.
+2025-07-09 01:55:22.167 +01:00 [INF] Executed action WebAPI2.Controllers.LoginController.Login (WebAPI2) in 1083.3057ms
+2025-07-09 01:55:22.167 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.LoginController.Login (WebAPI2)'
+2025-07-09 01:55:22.171 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5276/api/Login - 200 233 application/json; charset=utf-8 1357.5267ms
+2025-07-09 01:55:28.581 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-07-09 01:55:28.589 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (SuperAdmin|Admin)
+2025-07-09 01:55:28.590 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-09 01:55:28.590 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 401 0 null 9.552ms
+2025-07-09 01:55:41.216 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/3 - null null
+2025-07-09 01:55:41.221 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (SuperAdmin|Admin)
+2025-07-09 01:55:41.222 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-09 01:55:41.222 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/3 - 401 0 null 6.3231ms
+2025-07-09 01:55:52.777 +01:00 [INF] Application is shutting down...
+2025-07-09 02:57:15.570 +01:00 [INF] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-09 02:57:16.031 +01:00 [INF] Now listening on: http://localhost:5276
+2025-07-09 02:57:16.050 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-09 02:57:16.055 +01:00 [INF] Hosting environment: Development
+2025-07-09 02:57:16.056 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-07-09 02:57:16.886 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-07-09 02:57:17.954 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 1073.1753ms
+2025-07-09 02:57:25.353 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-07-09 02:57:26.933 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1579.811ms
+2025-07-09 02:57:33.478 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-07-09 02:57:33.606 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-09 02:57:33.631 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (SuperAdmin|Admin)
+2025-07-09 02:57:33.669 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-09 02:57:33.670 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 401 0 null 191.8835ms
+2025-07-09 02:57:41.169 +01:00 [INF] Application is shutting down...
+2025-07-09 02:59:00.347 +01:00 [INF] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-09 02:59:00.855 +01:00 [INF] Now listening on: http://localhost:5276
+2025-07-09 02:59:00.875 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-09 02:59:00.879 +01:00 [INF] Hosting environment: Development
+2025-07-09 02:59:00.880 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-07-09 02:59:02.338 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-07-09 02:59:03.852 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 1551.3652ms
+2025-07-09 02:59:09.833 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-07-09 02:59:11.171 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 1338.3203ms
+2025-07-09 02:59:18.696 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/api/Student/all - null null
+2025-07-09 02:59:19.074 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-09 02:59:19.092 +01:00 [INF] Executing endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-07-09 02:59:20.043 +01:00 [INF] Route matched with {action = "GetAllStudents", controller = "Student"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebAPI2.Models.StudentDTO]]] GetAllStudents() on controller WebAPI2.Controllers.StudentController (WebAPI2).
+2025-07-09 02:59:30.299 +01:00 [INF] Executing action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) - Validation state: "Valid"
+2025-07-09 02:59:30.310 +01:00 [INF] GetAllStudents() called!
+2025-07-09 02:59:32.987 +01:00 [INF] Executed DbCommand (330ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [s].[Id], [s].[Address], [s].[DateOfBirth], [s].[DeptId], [s].[Email], [s].[Name]
+FROM [Students] AS [s]
+2025-07-09 02:59:33.571 +01:00 [INF] Executed action method WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 3227.8419ms.
+2025-07-09 02:59:33.639 +01:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[WebAPI2.Models.StudentDTO, WebAPI2, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-07-09 02:59:34.289 +01:00 [INF] Executed action WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2) in 14158.8021ms
+2025-07-09 02:59:34.295 +01:00 [INF] Executed endpoint 'WebAPI2.Controllers.StudentController.GetAllStudents (WebAPI2)'
+2025-07-09 02:59:34.378 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/api/Student/all - 200 861 application/json; charset=utf-8 15681.645ms
+2025-07-09 02:59:48.240 +01:00 [INF] Application is shutting down...
+2025-07-09 03:02:41.096 +01:00 [INF] User profile is available. Using 'C:\Users\hp\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-07-09 03:02:43.118 +01:00 [INF] Now listening on: http://localhost:5276
+2025-07-09 03:02:43.138 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-09 03:02:43.141 +01:00 [INF] Hosting environment: Development
+2025-07-09 03:02:43.141 +01:00 [INF] Content root path: C:\Users\hp\RiderProjects\WebAPI2\WebAPI2
+2025-07-09 03:02:46.331 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/index.html - null null
+2025-07-09 03:02:49.493 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/index.html - 200 null text/html;charset=utf-8 3258.9595ms
+2025-07-09 03:02:54.444 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - null null
+2025-07-09 03:02:56.970 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5276/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 2525.8644ms
+2025-07-09 03:04:25.870 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5276/api/Login - application/json-patch+json 61
+2025-07-09 03:04:25.956 +01:00 [WRN] Failed to determine the https port for redirect.
+2025-07-09 03:04:25.961 +01:00 [INF] CORS policy execution failed.
+2025-07-09 03:04:25.962 +01:00 [INF] Request origin http://localhost:5276 does not have permission to access the resource.
+2025-07-09 03:04:25.993 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (SuperAdmin|Admin)
+2025-07-09 03:04:26.014 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-09 03:04:26.027 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5276/api/Login - 401 0 null 157.089ms
+2025-07-09 03:04:38.812 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5276/api/Login - application/json-patch+json 62
+2025-07-09 03:04:38.945 +01:00 [INF] CORS policy execution failed.
+2025-07-09 03:04:38.945 +01:00 [INF] Request origin http://localhost:5276 does not have permission to access the resource.
+2025-07-09 03:04:38.950 +01:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (SuperAdmin|Admin)
+2025-07-09 03:04:38.951 +01:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-07-09 03:04:38.952 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5276/api/Login - 401 0 null 139.2961ms
+2025-07-09 03:05:17.752 +01:00 [INF] Application is shutting down...

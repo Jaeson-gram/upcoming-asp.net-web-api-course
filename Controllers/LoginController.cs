@@ -13,6 +13,7 @@ namespace WebAPI2.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [EnableCors(PolicyName = "LocalHost")]
+// [Authorize(Roles = "SuperAdmin,Admin")]
 [AllowAnonymous]
 public class LoginController : Controller
 {
@@ -48,7 +49,8 @@ public class LoginController : Controller
                 // Subject = new ClaimsIdentity(new Claim[]
                 Subject = new ClaimsIdentity([
                     // username
-                    new Claim(ClaimTypes.Name, loginDetails.Username)
+                    new Claim(ClaimTypes.Name, loginDetails.Username),
+                    new Claim(ClaimTypes.Role, "SuperAdmin")
                 ]), 
                 Expires = DateTime.Now.AddMinutes(15),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

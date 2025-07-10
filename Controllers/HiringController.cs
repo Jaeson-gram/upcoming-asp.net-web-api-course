@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI2.Controllers;
@@ -6,6 +7,7 @@ namespace WebAPI2.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [EnableCors(PolicyName = "ForHire")] 
+[Authorize(AuthenticationSchemes = "ForHiring")]
 
 // so all hiring related code will be here,
 // enabling cors so only origins allowed in the named policy 'ForHire' will have access here. this will override the middleware policy
