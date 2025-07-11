@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -11,8 +12,6 @@ namespace WebAPI2.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors(PolicyName = "LocalHost")]
-    // enabling cors so only origins allowed in the named policy 'LocalHost' will have access here. this will override the middleware policy
-    // [EnableCors(PolicyName = "LocalHost")] -- you can also configure policy for individual endpoints, which overrides the controller policy
     public class StudentController : ControllerBase
     {
      
@@ -48,8 +47,6 @@ namespace WebAPI2.Controllers
         }
 
         [HttpGet("{id:int}", Name = "GetStudentByIdAsync")]
-        //without the constraints above we will have an exception about our req hitting multiple endpoints because the GetStudentByName is also the same endpoint and the webapi needs to know which one to hit
-        //besides, they also define the path visibly on uri
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -134,9 +131,6 @@ namespace WebAPI2.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        // [ DisableCors] -- disabling cors for a particular endpoint revokes the controller cors policy.
-        //the DisableCors dows not disable cors that has been enabled by endpoint routing
-
         public async Task<ActionResult<StudentDTO>> RegisterStudentAsync([FromBody] StudentDTO studentModel)
         {
             _logger.LogInformation("RegisterStudentAsync() called!");
@@ -186,7 +180,6 @@ namespace WebAPI2.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        // [EnableCors(PolicyName = "LocalHost")] -- using custom cors policy for a particular endpoint overrides the controller policy for that endpoint
         public async Task<ActionResult<StudentDTO>> UpdateStudentPartialAsync([FromBody] JsonPatchDocument<StudentDTO>? patchDocument, int id)
         {
             _logger.LogInformation("UpdateStudentPartialAsync() called!");
