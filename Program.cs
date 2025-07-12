@@ -10,8 +10,16 @@ using WebAPI2.Data.Repository;
 using WebAPI2.Logs;
 
 var builder = WebApplication.CreateBuilder(args);
-var key = builder.Configuration.GetValue<string>("jwtSecret") ??
-          "this is the most ultimate secret: every secret will be revealed";
+var key = builder.Configuration.GetValue<string>("jwtSecret") ?? "this is the most ultimate secret: every secret will be revealed";
+var jwtKeyForLocal = builder.Configuration.GetValue<string>("jwtSecretForLocal") ?? "this is the most ultimate secret: every secret will be revealed - LOCAL";
+var jwtKeyForHire = builder.Configuration.GetValue<string>("jwtSecretForHireWeb") ?? "this is the most ultimate secret: every secret will be revealed - HIRE";
+//
+var generalAudience = builder.Configuration.GetValue<string>("jwtAudience");
+var localAudience = builder.Configuration.GetValue<string>("jwtLocalAudience");
+var hireAudience = builder.Configuration.GetValue<string>("jwtHireAudience");
+var generalIssuer = builder.Configuration.GetValue<string>("jwtIssuer");
+var localIssuer = builder.Configuration.GetValue<string>("jwtLocalIssuer");
+var hireIssuer = builder.Configuration.GetValue<string>("jwtHireIssuer");
 
 
 // AppContext.SetSwitch("System.Globalization.Invariant", false);
@@ -104,27 +112,43 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(options =>
+}).AddJwtBearer("General", options =>
 {
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
-        ValidateIssuer = false,
-        ValidateAudience = false,
+        ValidateIssuer = true,
+        ValidIssuer = generalIssuer,
+        ValidateAudience = true,
+        ValidAudience = generalAudience
     };
-}).AddJwtBearer("ForHiring", options =>
+}).AddJwtBearer("LoginForHiring", options =>
 {
     options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
-        ValidateIssuer = false,
-        ValidateAudience = false,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtKeyForHire)),
+        ValidateIssuer = true,
+        ValidIssuer = hireIssuer,
+        ValidateAudience = true,
+        ValidAudience = hireAudience,
     };
-});
+}).AddJwtBearer("LoginForLocal", options =>
+  {
+      options.SaveToken = true;
+      options.TokenValidationParameters = new TokenValidationParameters()
+      {
+          ValidateIssuerSigningKey = true,
+          IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtKeyForLocal)),
+          ValidateIssuer = true,
+          ValidIssuer = localIssuer,
+          ValidateAudience = true,
+          ValidAudience = localAudience,
+      };
+  });
 
 var app = builder.Build();
 

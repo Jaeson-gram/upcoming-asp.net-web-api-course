@@ -11,7 +11,11 @@ namespace WebAPI2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors(PolicyName = "LocalHost")]
+    // [EnableCors(PolicyName = "LocalHost")]
+    [Authorize(AuthenticationSchemes = "LoginForLocal")]
+    // the auth scheme ensures that only user logged in as 'Local' audience will have access to these endpoints..
+    // ie, if a user logs in as 'Hire' or whatever, they will not have access to these endpoints...
+
     public class StudentController : ControllerBase
     {
      
