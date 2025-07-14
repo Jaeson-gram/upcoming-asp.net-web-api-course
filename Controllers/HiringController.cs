@@ -7,7 +7,7 @@ namespace WebAPI2.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 [EnableCors(PolicyName = "ForHire")] 
-[Authorize(AuthenticationSchemes = "LoginForHiring")] // the auth scheme here 
+[Authorize(AuthenticationSchemes = "LoginForHiring", Roles = "SuperAdmin,Admin")] // the auth scheme here 
 
 // cors ...
 // so all hiring related code will be here,
@@ -20,7 +20,11 @@ namespace WebAPI2.Controllers;
 // if a user logs in with 'Local' or any other policy name, they will not have access to these endpoints
 public class HiringController : ControllerBase
 {
-    [HttpGet]
+    [HttpGet("root")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     public IActionResult Get()
     {
         return Ok("the hiring endpoint works after verifying issuer and audience");
